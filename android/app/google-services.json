@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "608247123273",
+    "project_id": "ecotracker-134b2",
+    "storage_bucket": "ecotracker-134b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608247123273:android:d1ff9fbd4ac6ef1c96de98",
+        "android_client_info": {
+          "package_name": "com.ecotracker.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVCgyBha7u7lbP6UBlgn1Mm3XcTtBaQGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608247123273:android:256f519c3673143e96de98",
+        "android_client_info": {
+          "package_name": "com.flutterflow.ecoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVCgyBha7u7lbP6UBlgn1Mm3XcTtBaQGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608247123273:android:3a838301428633d496de98",
+        "android_client_info": {
+          "package_name": "com.mycompany.ecotracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVCgyBha7u7lbP6UBlgn1Mm3XcTtBaQGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
