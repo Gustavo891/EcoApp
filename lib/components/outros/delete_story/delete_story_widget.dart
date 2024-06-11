@@ -60,7 +60,7 @@ class _DeleteStoryWidgetState extends State<DeleteStoryWidget> {
                 maxWidth: 570.0,
               ),
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
+                color: FlutterFlowTheme.of(context).primaryBackground,
                 boxShadow: [
                   BoxShadow(
                     blurRadius: 4.0,
@@ -143,8 +143,7 @@ class _DeleteStoryWidgetState extends State<DeleteStoryWidget> {
                               0.0, 0.0, 0.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                          color: FlutterFlowTheme.of(context).card,
                           textStyle:
                               FlutterFlowTheme.of(context).bodyLarge.override(
                                     fontFamily: 'Figtree',
@@ -152,8 +151,8 @@ class _DeleteStoryWidgetState extends State<DeleteStoryWidget> {
                                   ),
                           elevation: 0.0,
                           borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 2.0,
+                            color: Color(0x00E5E7EB),
+                            width: 0.0,
                           ),
                           borderRadius: BorderRadius.circular(12.0),
                         ),

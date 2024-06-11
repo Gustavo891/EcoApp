@@ -54,7 +54,23 @@ abstract class FlutterFlowTheme {
   late Color error;
   late Color info;
 
-  late Color dark800Persist;
+  late Color background;
+  late Color customColor2;
+  late Color gradiente1;
+  late Color gradiente2;
+  late Color gradiente3;
+  late Color navbar;
+  late Color navbarSelected;
+  late Color navbarBorder;
+  late Color navbarUnselected;
+  late Color icon;
+  late Color customColor1;
+  late Color card;
+  late Color button;
+  late Color textReverseDark;
+  late Color infoElevate;
+  late Color texto;
+  late Color appbar;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -132,19 +148,35 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color tertiary = const Color(0xFFEE8B60);
   late Color alternate = const Color(0xFFE5E7EB);
   late Color primaryText = const Color(0xFF15161E);
-  late Color secondaryText = const Color(0xFF606A85);
-  late Color primaryBackground = const Color(0xFFF1F4F8);
+  late Color secondaryText = const Color(0xFF404040);
+  late Color primaryBackground = const Color(0xFFF7F7F7);
   late Color secondaryBackground = const Color(0xFFFFFFFF);
   late Color accent1 = const Color(0x4D9489F5);
   late Color accent2 = const Color(0x4C39D2C0);
   late Color accent3 = const Color(0x4CEE8B60);
-  late Color accent4 = const Color(0x9AFFFFFF);
+  late Color accent4 = const Color(0x9A555555);
   late Color success = const Color(0xFF048178);
   late Color warning = const Color(0xFFFCDC0C);
   late Color error = const Color(0xFFF8212E);
   late Color info = const Color(0xFFFFFFFF);
 
-  late Color dark800Persist = Color(0xFF15161E);
+  late Color background = Color(0xFFF6FFF8);
+  late Color customColor2 = Color(0x27000000);
+  late Color gradiente1 = Color(0xFFEBFFEE);
+  late Color gradiente2 = Color(0xFFFFFFFF);
+  late Color gradiente3 = Color(0xFFF6FFF8);
+  late Color navbar = Color(0xADECECEC);
+  late Color navbarSelected = Color(0xFF19620D);
+  late Color navbarBorder = Color(0xDAA7A7A7);
+  late Color navbarUnselected = Color(0x9A5A5A5A);
+  late Color icon = Color(0xFFACACAC);
+  late Color customColor1 = Color(0xFF26F9B6);
+  late Color card = Color(0xFFECECEC);
+  late Color button = Color(0xFF19620D);
+  late Color textReverseDark = Color(0xFFFFFFFF);
+  late Color infoElevate = Color(0xFFECECEC);
+  late Color texto = Color(0xFFFAFAFA);
+  late Color appbar = Color(0xFF19620D);
 }
 
 abstract class Typography {
@@ -304,20 +336,36 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color secondary = const Color(0xFF36A30E);
   late Color tertiary = const Color(0xFFEE8B60);
   late Color alternate = const Color(0xFFE5E7EB);
-  late Color primaryText = const Color(0xFF15161E);
-  late Color secondaryText = const Color(0xFF606A85);
-  late Color primaryBackground = const Color(0xFFF1F4F8);
+  late Color primaryText = const Color(0xFFFFFFFF);
+  late Color secondaryText = const Color(0xFFADADAD);
+  late Color primaryBackground = const Color(0xFF15161E);
   late Color secondaryBackground = const Color(0xFFFFFFFF);
   late Color accent1 = const Color(0x4D9489F5);
   late Color accent2 = const Color(0x4C39D2C0);
   late Color accent3 = const Color(0x4CEE8B60);
-  late Color accent4 = const Color(0x9AFFFFFF);
+  late Color accent4 = const Color(0x9AE6E6E6);
   late Color success = const Color(0xFF048178);
   late Color warning = const Color(0xFFFCDC0C);
   late Color error = const Color(0xFFF8212E);
   late Color info = const Color(0xFFFFFFFF);
 
-  late Color dark800Persist = Color(0xFF15161E);
+  late Color background = Color(0xFF15161E);
+  late Color customColor2 = Color(0x27000000);
+  late Color gradiente1 = Color(0xFF15161E);
+  late Color gradiente2 = Color(0xFF15161E);
+  late Color gradiente3 = Color(0xFF15161E);
+  late Color navbar = Color(0xFF15161E);
+  late Color navbarSelected = Color(0xFFFFFFFF);
+  late Color navbarBorder = Color(0xFF0F1016);
+  late Color navbarUnselected = Color(0x9A9D9D9D);
+  late Color icon = Color(0xFFEDEDED);
+  late Color customColor1 = Color(0xFF26F9B6);
+  late Color card = Color(0xFF20212A);
+  late Color button = Color(0xFFEFEFEF);
+  late Color textReverseDark = Color(0xFF19620D);
+  late Color infoElevate = Color(0xFF20212A);
+  late Color texto = Color(0xFF15161E);
+  late Color appbar = Color(0xFF0F0F16);
 }
 
 extension TextStyleHelper on TextStyle {

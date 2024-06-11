@@ -81,6 +81,26 @@ class UsersRecord extends FirestoreRecord {
   String get title => _title ?? '';
   bool hasTitle() => _title != null;
 
+  // "seguidores" field.
+  List<DocumentReference>? _seguidores;
+  List<DocumentReference> get seguidores => _seguidores ?? const [];
+  bool hasSeguidores() => _seguidores != null;
+
+  // "seguindo" field.
+  List<DocumentReference>? _seguindo;
+  List<DocumentReference> get seguindo => _seguindo ?? const [];
+  bool hasSeguindo() => _seguindo != null;
+
+  // "posts" field.
+  int? _posts;
+  int get posts => _posts ?? 0;
+  bool hasPosts() => _posts != null;
+
+  // "folhas" field.
+  int? _folhas;
+  int get folhas => _folhas ?? 0;
+  bool hasFolhas() => _folhas != null;
+
   void _initializeFields() {
     _displayName = snapshotData['display_name'] as String?;
     _email = snapshotData['email'] as String?;
@@ -95,6 +115,10 @@ class UsersRecord extends FirestoreRecord {
     _lastActiveTime = snapshotData['last_active_time'] as DateTime?;
     _role = snapshotData['role'] as String?;
     _title = snapshotData['title'] as String?;
+    _seguidores = getDataList(snapshotData['seguidores']);
+    _seguindo = getDataList(snapshotData['seguindo']);
+    _posts = castToType<int>(snapshotData['posts']);
+    _folhas = castToType<int>(snapshotData['folhas']);
   }
 
   static CollectionReference get collection =>
@@ -144,6 +168,8 @@ Map<String, dynamic> createUsersRecordData({
   DateTime? lastActiveTime,
   String? role,
   String? title,
+  int? posts,
+  int? folhas,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -160,6 +186,8 @@ Map<String, dynamic> createUsersRecordData({
       'last_active_time': lastActiveTime,
       'role': role,
       'title': title,
+      'posts': posts,
+      'folhas': folhas,
     }.withoutNulls,
   );
 
@@ -171,6 +199,7 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
 
   @override
   bool equals(UsersRecord? e1, UsersRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.displayName == e2?.displayName &&
         e1?.email == e2?.email &&
         e1?.photoUrl == e2?.photoUrl &&
@@ -183,7 +212,11 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.shortDescription == e2?.shortDescription &&
         e1?.lastActiveTime == e2?.lastActiveTime &&
         e1?.role == e2?.role &&
-        e1?.title == e2?.title;
+        e1?.title == e2?.title &&
+        listEquality.equals(e1?.seguidores, e2?.seguidores) &&
+        listEquality.equals(e1?.seguindo, e2?.seguindo) &&
+        e1?.posts == e2?.posts &&
+        e1?.folhas == e2?.folhas;
   }
 
   @override
@@ -200,7 +233,11 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.shortDescription,
         e?.lastActiveTime,
         e?.role,
-        e?.title
+        e?.title,
+        e?.seguidores,
+        e?.seguindo,
+        e?.posts,
+        e?.folhas
       ]);
 
   @override

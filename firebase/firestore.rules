@@ -11,7 +11,7 @@ service cloud.firestore {
     match /users/{document} {
       allow create: if request.auth.uid == document;
       allow read: if true;
-      allow write: if request.auth.uid == document;
+      allow write: if true;
       allow delete: if request.auth.uid == document;
     }
 
@@ -47,7 +47,40 @@ service cloud.firestore {
       allow create: if true;
       allow read: if true;
       allow write: if true;
-      allow delete: if false;
+      allow delete: if request.auth != null;
+    }
+
+    match /quizSet/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if request.auth != null;
+      allow delete: if request.auth != null;
+    }
+
+    match /quizSet/{parent}/questoes/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if request.auth != null;
+      allow delete: if request.auth != null;
+    }
+
+    match /{path=**}/questoes/{document} {
+      allow read: if true;
+    }
+
+
+    match /users/{parent}/quiz_completed/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if true;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /medalha/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if request.auth != null;
+      allow delete: if request.auth != null;
     }
   }
 }

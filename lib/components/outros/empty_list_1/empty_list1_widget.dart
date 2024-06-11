@@ -51,7 +51,7 @@ class _EmptyList1WidgetState extends State<EmptyList1Widget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
           child: Text(
-            'No Posts',
+            'Sem novidades!',
             textAlign: TextAlign.center,
             style: FlutterFlowTheme.of(context).headlineSmall.override(
                   fontFamily: 'Outfit',
@@ -63,7 +63,7 @@ class _EmptyList1WidgetState extends State<EmptyList1Widget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(32.0, 8.0, 32.0, 0.0),
           child: Text(
-            'It seems that there are no posts here. Check back later to see the latest stuff going on!',
+            'Pelo visto, estamos sem postagens em nosso feed, volte depois para ver o que está acontecendo!',
             textAlign: TextAlign.center,
             style: FlutterFlowTheme.of(context).labelMedium.override(
                   fontFamily: 'Figtree',

@@ -74,21 +74,18 @@ class AppStateNotifier extends ChangeNotifier {
   }
 }
 
-GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
-    GoRouter(
+GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? entryPage ?? MainFeedWidget()
-          : LoginWidget(),
+      errorBuilder: (context, state) =>
+          appStateNotifier.loggedIn ? MainFeedWidget() : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? entryPage ?? MainFeedWidget()
-              : LoginWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? MainFeedWidget() : LoginWidget(),
         ),
         FFRoute(
           name: 'login',
@@ -96,34 +93,30 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
-          name: 'createAccount',
-          path: '/createAccount',
-          builder: (context, params) => CreateAccountWidget(),
+          name: 'criarConta',
+          path: '/criarConta',
+          builder: (context, params) => CriarContaWidget(),
         ),
         FFRoute(
-          name: 'forgotPassword',
-          path: '/forgotPassword',
-          builder: (context, params) => ForgotPasswordWidget(),
+          name: 'recuperarSenha',
+          path: '/recuperarSenha',
+          builder: (context, params) => RecuperarSenhaWidget(),
         ),
         FFRoute(
           name: 'main_Feed',
           path: '/mainFeed',
+          requireAuth: true,
           builder: (context, params) => MainFeedWidget(),
         ),
         FFRoute(
-          name: 'main_Profile',
-          path: '/mainProfile',
-          builder: (context, params) => MainProfileWidget(),
+          name: 'perfil',
+          path: '/perfil',
+          builder: (context, params) => PerfilWidget(),
         ),
         FFRoute(
           name: 'createStory',
           path: '/createStory',
           builder: (context, params) => CreateStoryWidget(),
-        ),
-        FFRoute(
-          name: 'createPost',
-          path: '/createPost',
-          builder: (context, params) => CreatePostWidget(),
         ),
         FFRoute(
           name: 'postDetails_Page',
@@ -155,19 +148,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: 'editSettings',
-          path: '/editSettings',
-          builder: (context, params) => EditSettingsWidget(),
+          name: 'configuracoes',
+          path: '/configuracoes',
+          builder: (context, params) => ConfiguracoesWidget(),
         ),
         FFRoute(
-          name: 'editUserProfile',
-          path: '/editUserProfile',
-          builder: (context, params) => EditUserProfileWidget(),
+          name: 'editarPerfil',
+          path: '/editarPerfil',
+          builder: (context, params) => EditarPerfilWidget(),
         ),
         FFRoute(
-          name: 'changePassword',
-          path: '/changePassword',
-          builder: (context, params) => ChangePasswordWidget(),
+          name: 'mudarSenha',
+          path: '/mudarSenha',
+          builder: (context, params) => MudarSenhaWidget(),
         ),
         FFRoute(
           name: 'viewProfilePageOther',
@@ -189,6 +182,70 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'quiz_page',
+          path: '/quizPage',
+          builder: (context, params) => QuizPageWidget(),
+        ),
+        FFRoute(
+          name: 'create_quiz',
+          path: '/createQuiz',
+          builder: (context, params) => CreateQuizWidget(),
+        ),
+        FFRoute(
+          name: 'add_question',
+          path: '/addQuestion',
+          builder: (context, params) => AddQuestionWidget(
+            quizSetRef: params.getParam(
+              'quizSetRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['quizSet'],
+            ),
+            total: params.getParam(
+              'total',
+              ParamType.int,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'quiz_question',
+          path: '/quizQuestion',
+          builder: (context, params) => QuizQuestionWidget(
+            quizSet: params.getParam(
+              'quizSet',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['quizSet'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'quiz_finish',
+          path: '/quizFinish',
+          builder: (context, params) => QuizFinishWidget(
+            quizSet: params.getParam(
+              'quizSet',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['quizSet'],
+            ),
+            resultado: params.getParam(
+              'resultado',
+              ParamType.int,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'medalhas',
+          path: '/medalhas',
+          builder: (context, params) => MedalhasWidget(),
+        ),
+        FFRoute(
+          name: 'create_medal',
+          path: '/createMedal',
+          builder: (context, params) => CreateMedalWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -374,17 +431,19 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Container(
-                  color: Color(0xFE3DB800),
-                  child: Center(
-                    child: Image.asset(
-                      'assets/images/logo.png',
-                      width: MediaQuery.sizeOf(context).width * 0.5,
-                      height: MediaQuery.sizeOf(context).height * 0.5,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                )
+              ? isWeb
+                  ? Container()
+                  : Container(
+                      color: Color(0xFE3DB800),
+                      child: Center(
+                        child: Image.asset(
+                          'assets/images/logo.png',
+                          width: MediaQuery.sizeOf(context).width * 0.5,
+                          height: MediaQuery.sizeOf(context).height * 0.5,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    )
               : page;
 
           final transitionInfo = state.transitionInfo;
