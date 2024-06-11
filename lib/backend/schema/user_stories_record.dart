@@ -56,6 +56,11 @@ class UserStoriesRecord extends FirestoreRecord {
   bool get isOwner => _isOwner ?? false;
   bool hasIsOwner() => _isOwner != null;
 
+  // "deleteTime" field.
+  DateTime? _deleteTime;
+  DateTime? get deleteTime => _deleteTime;
+  bool hasDeleteTime() => _deleteTime != null;
+
   void _initializeFields() {
     _user = snapshotData['user'] as DocumentReference?;
     _storyVideo = snapshotData['storyVideo'] as String?;
@@ -65,6 +70,7 @@ class UserStoriesRecord extends FirestoreRecord {
     _likes = getDataList(snapshotData['likes']);
     _numComments = castToType<int>(snapshotData['numComments']);
     _isOwner = snapshotData['isOwner'] as bool?;
+    _deleteTime = snapshotData['deleteTime'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -109,6 +115,7 @@ Map<String, dynamic> createUserStoriesRecordData({
   DateTime? storyPostedAt,
   int? numComments,
   bool? isOwner,
+  DateTime? deleteTime,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -119,6 +126,7 @@ Map<String, dynamic> createUserStoriesRecordData({
       'storyPostedAt': storyPostedAt,
       'numComments': numComments,
       'isOwner': isOwner,
+      'deleteTime': deleteTime,
     }.withoutNulls,
   );
 
@@ -138,7 +146,8 @@ class UserStoriesRecordDocumentEquality implements Equality<UserStoriesRecord> {
         e1?.storyPostedAt == e2?.storyPostedAt &&
         listEquality.equals(e1?.likes, e2?.likes) &&
         e1?.numComments == e2?.numComments &&
-        e1?.isOwner == e2?.isOwner;
+        e1?.isOwner == e2?.isOwner &&
+        e1?.deleteTime == e2?.deleteTime;
   }
 
   @override
@@ -150,7 +159,8 @@ class UserStoriesRecordDocumentEquality implements Equality<UserStoriesRecord> {
         e?.storyPostedAt,
         e?.likes,
         e?.numComments,
-        e?.isOwner
+        e?.isOwner,
+        e?.deleteTime
       ]);
 
   @override

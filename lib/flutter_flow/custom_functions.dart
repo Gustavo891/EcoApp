@@ -23,3 +23,8 @@ bool hasUploadedMedia(String? mediaPath) {
 String? customUsuario(String nomeUsuario) {
   return nomeUsuario.toLowerCase();
 }
+
+DateTime addData(DateTime data) {
+  DateTime novaData = data.add(Duration(minutes: 1));
+  return novaData;
+}

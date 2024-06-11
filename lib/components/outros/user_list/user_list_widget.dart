@@ -71,7 +71,7 @@ class _UserListWidgetState extends State<UserListWidget> {
             width: double.infinity,
             height: 60.0,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
+              color: FlutterFlowTheme.of(context).card,
             ),
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
@@ -82,17 +82,16 @@ class _UserListWidgetState extends State<UserListWidget> {
                     width: 44.0,
                     height: 44.0,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).accent1,
                       borderRadius: BorderRadius.circular(8.0),
                       border: Border.all(
-                        color: FlutterFlowTheme.of(context).primary,
+                        color: Colors.transparent,
                         width: 2.0,
                       ),
                     ),
                     child: Padding(
                       padding: EdgeInsets.all(2.0),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6.0),
+                        borderRadius: BorderRadius.circular(24.0),
                         child: CachedNetworkImage(
                           fadeInDuration: Duration(milliseconds: 300),
                           fadeOutDuration: Duration(milliseconds: 300),
@@ -131,15 +130,16 @@ class _UserListWidgetState extends State<UserListWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 4.0, 0.0, 0.0),
                             child: Text(
-                              valueOrDefault<String>(
-                                containerUsersRecord.email,
+                              '@${valueOrDefault<String>(
+                                containerUsersRecord.userName,
                                 '--',
-                              ),
+                              )}',
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
                                     fontFamily: 'Figtree',
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
                                     letterSpacing: 0.0,
                                   ),
                             ),

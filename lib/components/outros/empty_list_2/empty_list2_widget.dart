@@ -53,7 +53,7 @@ class _EmptyList2WidgetState extends State<EmptyList2Widget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
             child: Text(
-              'No Messages',
+              'Sem Comentários!',
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).headlineSmall.override(
                     fontFamily: 'Outfit',
@@ -65,7 +65,7 @@ class _EmptyList2WidgetState extends State<EmptyList2Widget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(32.0, 8.0, 32.0, 0.0),
             child: Text(
-              'It seems you don\'t have any messages with other users. Begin a chat below.',
+              'Não existe nenhum comentário. Tenha o primeiro, converse com outros usuários!',
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).labelMedium.override(
                     fontFamily: 'Figtree',
