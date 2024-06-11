@@ -1,7 +1,4 @@
-# EcoApp
+# EcoSocial - Rede social do ambiente.
 
-A new Flutter project.
-
-## Getting Started
-
-FlutterFlow projects are built to run on the Flutter _stable_ release.
+- Quizzes (Responda os questionários para ganhar moedas, as folhas)
+Acesso: https://ecosocial.luizgustavo.tech/
