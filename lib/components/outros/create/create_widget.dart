@@ -352,11 +352,12 @@ class _CreateWidgetState extends State<CreateWidget>
                                   final selectedMedia =
                                       await selectMediaWithSourceBottomSheet(
                                     context: context,
+                                    imageQuality: 100,
                                     allowPhoto: true,
                                     allowVideo: true,
                                     backgroundColor:
                                         FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                            .primaryBackground,
                                     textColor: FlutterFlowTheme.of(context)
                                         .primaryText,
                                     pickerFontFamily: 'Figtree',
@@ -431,67 +432,94 @@ class _CreateWidgetState extends State<CreateWidget>
                                 color: FlutterFlowTheme.of(context)
                                     .primaryBackground,
                               ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 12.0, 0.0),
-                                    child: Text(
-                                      'Post',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Figtree',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondary,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                              child: Visibility(
+                                visible: _model.isDataUploading ? false : true,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 12.0, 0.0),
+                                      child: Text(
+                                        'Post',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Figtree',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
                                     ),
-                                  ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      unawaited(
-                                        () async {
-                                          await UserPostsRecord.collection
-                                              .doc()
-                                              .set(createUserPostsRecordData(
-                                                postPhoto:
-                                                    _model.uploadedFileUrl,
-                                                postDescription: _model
-                                                    .comentarioTextController
-                                                    .text,
-                                                postUser: currentUserReference,
-                                                postTitle: '',
-                                                timePosted: getCurrentTimestamp,
-                                                postOwner: true,
-                                              ));
-                                        }(),
-                                      );
+                                    InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        if (_model.isDataUploading == true) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Uma foto está sendo enviada!',
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
+                                              ),
+                                              duration:
+                                                  Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                            ),
+                                          );
+                                          return;
+                                        }
+                                        unawaited(
+                                          () async {
+                                            await UserPostsRecord.collection
+                                                .doc()
+                                                .set(createUserPostsRecordData(
+                                                  postPhoto:
+                                                      _model.uploadedFileUrl,
+                                                  postDescription: _model
+                                                      .comentarioTextController
+                                                      .text,
+                                                  postUser:
+                                                      currentUserReference,
+                                                  postTitle: '',
+                                                  timePosted:
+                                                      getCurrentTimestamp,
+                                                  postOwner: true,
+                                                ));
+                                          }(),
+                                        );
 
-                                      await currentUserReference!.update({
-                                        ...mapToFirestore(
-                                          {
-                                            'posts': FieldValue.increment(1),
-                                          },
-                                        ),
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                    child: Icon(
-                                      Icons.send_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      size: 28.0,
+                                        await currentUserReference!.update({
+                                          ...mapToFirestore(
+                                            {
+                                              'posts': FieldValue.increment(1),
+                                            },
+                                          ),
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                      child: Icon(
+                                        Icons.send_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        size: 28.0,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ],

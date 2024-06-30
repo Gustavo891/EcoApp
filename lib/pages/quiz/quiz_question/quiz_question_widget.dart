@@ -161,7 +161,7 @@ class _QuizQuestionWidgetState extends State<QuizQuestionWidget>
                     return Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       constraints: BoxConstraints(
-                        maxWidth: 600.0,
+                        maxWidth: 800.0,
                       ),
                       decoration: BoxDecoration(),
                       child: Column(
@@ -358,9 +358,8 @@ class _QuizQuestionWidgetState extends State<QuizQuestionWidget>
                                                               if (_model
                                                                       .status1 ==
                                                                   0) {
-                                                                return FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .texto;
+                                                                return Color(
+                                                                    0xFF15161E);
                                                               } else if (_model
                                                                       .status1 ==
                                                                   1) {
@@ -494,9 +493,8 @@ class _QuizQuestionWidgetState extends State<QuizQuestionWidget>
                                                               if (_model
                                                                       .status2 ==
                                                                   0) {
-                                                                return FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .texto;
+                                                                return Color(
+                                                                    0xFF15161E);
                                                               } else if (_model
                                                                       .status2 ==
                                                                   1) {
@@ -509,9 +507,7 @@ class _QuizQuestionWidgetState extends State<QuizQuestionWidget>
                                                                     .alternate;
                                                               }
                                                             }(),
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .texto,
+                                                            Color(0xFF15161E),
                                                           ),
                                                           fontSize: 18.0,
                                                           letterSpacing: 0.0,
@@ -630,9 +626,8 @@ class _QuizQuestionWidgetState extends State<QuizQuestionWidget>
                                                               if (_model
                                                                       .status3 ==
                                                                   0) {
-                                                                return FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .texto;
+                                                                return Color(
+                                                                    0xFF15161E);
                                                               } else if (_model
                                                                       .status3 ==
                                                                   1) {
@@ -766,9 +761,8 @@ class _QuizQuestionWidgetState extends State<QuizQuestionWidget>
                                                               if (_model
                                                                       .status4 ==
                                                                   0) {
-                                                                return FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .texto;
+                                                                return Color(
+                                                                    0xFF15161E);
                                                               } else if (_model
                                                                       .status4 ==
                                                                   1) {
@@ -781,9 +775,7 @@ class _QuizQuestionWidgetState extends State<QuizQuestionWidget>
                                                                     .alternate;
                                                               }
                                                             }(),
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
+                                                            Color(0xFF15161E),
                                                           ),
                                                           fontSize: 18.0,
                                                           letterSpacing: 0.0,

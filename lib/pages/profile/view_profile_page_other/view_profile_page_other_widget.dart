@@ -96,7 +96,7 @@ class _ViewProfilePageOtherWidgetState
                         EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                     child: Container(
                       constraints: BoxConstraints(
-                        maxWidth: 870.0,
+                        maxWidth: 800.0,
                       ),
                       decoration: BoxDecoration(),
                       child: SingleChildScrollView(
@@ -129,6 +129,7 @@ class _ViewProfilePageOtherWidgetState
                                                 borderRadius:
                                                     BorderRadius.circular(60.0),
                                                 border: Border.all(
+                                                  color: Colors.transparent,
                                                   width: 0.0,
                                                 ),
                                               ),

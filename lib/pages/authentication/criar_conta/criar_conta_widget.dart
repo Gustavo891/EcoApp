@@ -238,10 +238,12 @@ class _CriarContaWidgetState extends State<CriarContaWidget>
           body: Align(
             alignment: AlignmentDirectional(0.0, 0.0),
             child: Container(
-              width: 400.0,
               height: double.infinity,
+              constraints: BoxConstraints(
+                maxWidth: 800.0,
+              ),
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).background,
+                color: FlutterFlowTheme.of(context).primaryBackground,
               ),
               alignment: AlignmentDirectional(0.0, 0.0),
               child: Align(
@@ -874,6 +876,22 @@ class _CriarContaWidgetState extends State<CriarContaWidget>
 
                                                 GoRouter.of(context)
                                                     .prepareAuthEvent();
+                                                if (_model
+                                                        .passwordTextController
+                                                        .text !=
+                                                    _model
+                                                        .passwordTextController
+                                                        .text) {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'A senha não está correta.',
+                                                      ),
+                                                    ),
+                                                  );
+                                                  return;
+                                                }
 
                                                 final user = await authManager
                                                     .createAccountWithEmail(
@@ -894,12 +912,16 @@ class _CriarContaWidgetState extends State<CriarContaWidget>
                                                       displayName: _model
                                                           .nomeTextController
                                                           .text,
-                                                      userName: functions
-                                                          .customUsuario(_model
-                                                              .usuarioTextController
-                                                              .text),
+                                                      email: _model
+                                                          .emailTextController
+                                                          .text,
                                                       photoUrl:
-                                                          'https://i.imgur.com/6o6Z9t9.png',
+                                                          'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/eco-app-7rdozn/assets/smgpmnfm5azu/ecoIcon.png',
+                                                      createdTime:
+                                                          getCurrentTimestamp,
+                                                      userName: _model
+                                                          .usuarioTextController
+                                                          .text,
                                                     ));
 
                                                 context.goNamedAuth('main_Feed',

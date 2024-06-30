@@ -165,7 +165,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color gradiente1 = Color(0xFFEBFFEE);
   late Color gradiente2 = Color(0xFFFFFFFF);
   late Color gradiente3 = Color(0xFFF6FFF8);
-  late Color navbar = Color(0xADECECEC);
+  late Color navbar = Color(0xFFEFEFEF);
   late Color navbarSelected = Color(0xFF19620D);
   late Color navbarBorder = Color(0xDAA7A7A7);
   late Color navbarUnselected = Color(0x9A5A5A5A);

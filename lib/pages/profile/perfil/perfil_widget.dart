@@ -81,8 +81,9 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: Container(
                           width: double.infinity,
+                          height: double.infinity,
                           constraints: BoxConstraints(
-                            maxWidth: 1070.0,
+                            maxWidth: 800.0,
                           ),
                           decoration: BoxDecoration(),
                           child: Column(
@@ -642,345 +643,296 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                   ),
                                 ],
                               ),
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  StreamBuilder<List<UserPostsRecord>>(
-                                    stream: queryUserPostsRecord(
-                                      queryBuilder: (userPostsRecord) =>
-                                          userPostsRecord
-                                              .where(
-                                                'postUser',
-                                                isEqualTo:
-                                                    perfilUsersRecord.reference,
-                                              )
-                                              .orderBy('timePosted',
-                                                  descending: true),
-                                    ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      List<UserPostsRecord>
-                                          listViewUserPostsRecordList =
-                                          snapshot.data!;
-                                      if (listViewUserPostsRecordList.isEmpty) {
-                                        return EmptyList1Widget();
-                                      }
-                                      return ListView.builder(
-                                        padding: EdgeInsets.zero,
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.vertical,
-                                        itemCount:
-                                            listViewUserPostsRecordList.length,
-                                        itemBuilder: (context, listViewIndex) {
-                                          final listViewUserPostsRecord =
-                                              listViewUserPostsRecordList[
-                                                  listViewIndex];
-                                          return Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 4.0, 20.0, 0.0),
-                                            child: StreamBuilder<UsersRecord>(
-                                              stream: UsersRecord.getDocument(
-                                                  listViewUserPostsRecord
-                                                      .postUser!),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        valueColor:
-                                                            AlwaysStoppedAnimation<
-                                                                Color>(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                                final userPostUsersRecord =
-                                                    snapshot.data!;
-                                                return Container(
-                                                  width:
-                                                      MediaQuery.sizeOf(context)
-                                                              .width *
-                                                          1.0,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            0.0),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      StreamBuilder<List<UserPostsRecord>>(
+                                        stream: queryUserPostsRecord(
+                                          queryBuilder: (userPostsRecord) =>
+                                              userPostsRecord
+                                                  .where(
+                                                    'postUser',
+                                                    isEqualTo: perfilUsersRecord
+                                                        .reference,
+                                                  )
+                                                  .orderBy('timePosted',
+                                                      descending: true),
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
                                                   ),
-                                                  child: InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      context.pushNamed(
-                                                        'postDetails_Page',
-                                                        queryParameters: {
-                                                          'userRecord':
-                                                              serializeParam(
-                                                            userPostUsersRecord,
-                                                            ParamType.Document,
-                                                          ),
-                                                          'postReference':
-                                                              serializeParam(
-                                                            listViewUserPostsRecord,
-                                                            ParamType.Document,
-                                                          ),
-                                                        }.withoutNulls,
-                                                        extra: <String,
-                                                            dynamic>{
-                                                          'userRecord':
-                                                              userPostUsersRecord,
-                                                          'postReference':
-                                                              listViewUserPostsRecord,
-                                                        },
-                                                      );
-                                                    },
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      20.0,
-                                                                      8.0,
-                                                                      2.0,
-                                                                      15.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Container(
-                                                                width: 45.0,
-                                                                height: 45.0,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              24.0),
-                                                                  border: Border
-                                                                      .all(
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    width: 0.0,
-                                                                  ),
-                                                                ),
-                                                                child:
-                                                                    ClipRRect(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              24.0),
-                                                                  child: Image
-                                                                      .network(
-                                                                    userPostUsersRecord
-                                                                        .photoUrl,
-                                                                    width: double
-                                                                        .infinity,
-                                                                    height: double
-                                                                        .infinity,
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Expanded(
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      children: [
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              12.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
-                                                                            valueOrDefault<String>(
-                                                                              userPostUsersRecord.displayName,
-                                                                              'nomeDoUsuario',
-                                                                            ),
-                                                                            style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                  fontFamily: 'Poppins',
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              12.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
-                                                                            '@${valueOrDefault<String>(
-                                                                              userPostUsersRecord.userName,
-                                                                              'nomeDoUsuario',
-                                                                            )}',
-                                                                            style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                  fontFamily: 'Poppins',
-                                                                                  color: Color(0xFF989898),
-                                                                                  fontSize: 11.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        if (listViewUserPostsRecord
-                                                                    .postPhoto !=
-                                                                null &&
-                                                            listViewUserPostsRecord
-                                                                    .postPhoto !=
-                                                                '')
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        20.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        4.0),
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                              child:
-                                                                  CachedNetworkImage(
-                                                                fadeInDuration:
-                                                                    Duration(
-                                                                        milliseconds:
-                                                                            500),
-                                                                fadeOutDuration:
-                                                                    Duration(
-                                                                        milliseconds:
-                                                                            500),
-                                                                imageUrl:
-                                                                    listViewUserPostsRecord
-                                                                        .postPhoto,
-                                                                width: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .width *
-                                                                    1.0,
-                                                                height: 200.0,
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              ),
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<UserPostsRecord>
+                                              listViewUserPostsRecordList =
+                                              snapshot.data!;
+                                          if (listViewUserPostsRecordList
+                                              .isEmpty) {
+                                            return EmptyList1Widget();
+                                          }
+                                          return ListView.builder(
+                                            padding: EdgeInsets.zero,
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount:
+                                                listViewUserPostsRecordList
+                                                    .length,
+                                            itemBuilder:
+                                                (context, listViewIndex) {
+                                              final listViewUserPostsRecord =
+                                                  listViewUserPostsRecordList[
+                                                      listViewIndex];
+                                              return Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 4.0, 20.0, 0.0),
+                                                child:
+                                                    StreamBuilder<UsersRecord>(
+                                                  stream:
+                                                      UsersRecord.getDocument(
+                                                          listViewUserPostsRecord
+                                                              .postUser!),
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                    Color>(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
                                                             ),
                                                           ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      2.0,
-                                                                      4.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Expanded(
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          20.0,
-                                                                          0.0,
-                                                                          12.0,
-                                                                          5.0),
-                                                                  child: Text(
-                                                                    listViewUserPostsRecord
-                                                                        .postDescription,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Poppins',
-                                                                          fontSize:
-                                                                              12.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w300,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
                                                         ),
-                                                        Row(
+                                                      );
+                                                    }
+                                                    final userPostUsersRecord =
+                                                        snapshot.data!;
+                                                    return Container(
+                                                      width: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width *
+                                                          1.0,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(0.0),
+                                                      ),
+                                                      child: InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          context.pushNamed(
+                                                            'postDetails_Page',
+                                                            queryParameters: {
+                                                              'userRecord':
+                                                                  serializeParam(
+                                                                userPostUsersRecord,
+                                                                ParamType
+                                                                    .Document,
+                                                              ),
+                                                              'postReference':
+                                                                  serializeParam(
+                                                                listViewUserPostsRecord,
+                                                                ParamType
+                                                                    .Document,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              'userRecord':
+                                                                  userPostUsersRecord,
+                                                              'postReference':
+                                                                  listViewUserPostsRecord,
+                                                            },
+                                                          );
+                                                        },
+                                                        child: Column(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
                                                           children: [
                                                             Padding(
                                                               padding:
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          10.0,
-                                                                          0.0,
+                                                                          20.0,
+                                                                          8.0,
+                                                                          2.0,
+                                                                          15.0),
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 45.0,
+                                                                    height:
+                                                                        45.0,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              24.0),
+                                                                      border:
+                                                                          Border
+                                                                              .all(
+                                                                        color: Colors
+                                                                            .transparent,
+                                                                        width:
+                                                                            0.0,
+                                                                      ),
+                                                                    ),
+                                                                    child:
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              24.0),
+                                                                      child: Image
+                                                                          .network(
+                                                                        userPostUsersRecord
+                                                                            .photoUrl,
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  Expanded(
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: [
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                                                                              child: Text(
+                                                                                valueOrDefault<String>(
+                                                                                  userPostUsersRecord.displayName,
+                                                                                  'nomeDoUsuario',
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                      fontFamily: 'Poppins',
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FontWeight.normal,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                                                                              child: Text(
+                                                                                '@${valueOrDefault<String>(
+                                                                                  userPostUsersRecord.userName,
+                                                                                  'nomeDoUsuario',
+                                                                                )}',
+                                                                                style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                      fontFamily: 'Poppins',
+                                                                                      color: Color(0xFF989898),
+                                                                                      fontSize: 11.0,
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FontWeight.normal,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            if (listViewUserPostsRecord
+                                                                        .postPhoto !=
+                                                                    null &&
+                                                                listViewUserPostsRecord
+                                                                        .postPhoto !=
+                                                                    '')
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            20.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            4.0),
+                                                                child:
+                                                                    ClipRRect(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              12.0),
+                                                                  child:
+                                                                      CachedNetworkImage(
+                                                                    fadeInDuration:
+                                                                        Duration(
+                                                                            milliseconds:
+                                                                                500),
+                                                                    fadeOutDuration:
+                                                                        Duration(
+                                                                            milliseconds:
+                                                                                500),
+                                                                    imageUrl:
+                                                                        listViewUserPostsRecord
+                                                                            .postPhoto,
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        1.0,
+                                                                    height:
+                                                                        200.0,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          2.0,
+                                                                          4.0,
                                                                           0.0,
                                                                           0.0),
                                                               child: Row(
@@ -988,115 +940,28 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                                     MainAxisSize
                                                                         .max,
                                                                 children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            16.0,
-                                                                            0.0),
-                                                                    child: Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        ToggleIcon(
-                                                                          onPressed:
-                                                                              () async {
-                                                                            final likesElement =
-                                                                                currentUserReference;
-                                                                            final likesUpdate = listViewUserPostsRecord.likes.contains(likesElement)
-                                                                                ? FieldValue.arrayRemove([
-                                                                                    likesElement
-                                                                                  ])
-                                                                                : FieldValue.arrayUnion([
-                                                                                    likesElement
-                                                                                  ]);
-                                                                            await listViewUserPostsRecord.reference.update({
-                                                                              ...mapToFirestore(
-                                                                                {
-                                                                                  'likes': likesUpdate,
-                                                                                },
-                                                                              ),
-                                                                            });
-                                                                          },
-                                                                          value: listViewUserPostsRecord
-                                                                              .likes
-                                                                              .contains(currentUserReference),
-                                                                          onIcon:
-                                                                              FaIcon(
-                                                                            FontAwesomeIcons.leaf,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primary,
-                                                                            size:
-                                                                                22.0,
-                                                                          ),
-                                                                          offIcon:
-                                                                              FaIcon(
-                                                                            FontAwesomeIcons.leaf,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
-                                                                            size:
-                                                                                22.0,
-                                                                          ),
-                                                                        ),
+                                                                  Expanded(
+                                                                    child:
                                                                         Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              4.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
-                                                                            valueOrDefault<String>(
-                                                                              functions.likes(listViewUserPostsRecord).toString(),
-                                                                              '0',
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          20.0,
+                                                                          0.0,
+                                                                          12.0,
+                                                                          5.0),
+                                                                      child:
+                                                                          Text(
+                                                                        listViewUserPostsRecord
+                                                                            .postDescription,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Poppins',
+                                                                              fontSize: 12.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.w300,
                                                                             ),
-                                                                            style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                  fontFamily: 'Figtree',
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                  Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      Icon(
-                                                                        Icons
-                                                                            .mode_comment_outlined,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                        size:
-                                                                            22.0,
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          listViewUserPostsRecord
-                                                                              .numComments
-                                                                              .toString(),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .labelSmall
-                                                                              .override(
-                                                                                fontFamily: 'Figtree',
-                                                                                color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.normal,
-                                                                              ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
                                                                   ),
                                                                 ],
                                                               ),
@@ -1105,52 +970,160 @@ class _PerfilWidgetState extends State<PerfilWidget> {
                                                               mainAxisSize:
                                                                   MainAxisSize
                                                                       .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
                                                               children: [
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            16.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            ToggleIcon(
+                                                                              onPressed: () async {
+                                                                                final likesElement = currentUserReference;
+                                                                                final likesUpdate = listViewUserPostsRecord.likes.contains(likesElement)
+                                                                                    ? FieldValue.arrayRemove([
+                                                                                        likesElement
+                                                                                      ])
+                                                                                    : FieldValue.arrayUnion([
+                                                                                        likesElement
+                                                                                      ]);
+                                                                                await listViewUserPostsRecord.reference.update({
+                                                                                  ...mapToFirestore(
+                                                                                    {
+                                                                                      'likes': likesUpdate,
+                                                                                    },
+                                                                                  ),
+                                                                                });
+                                                                              },
+                                                                              value: listViewUserPostsRecord.likes.contains(currentUserReference),
+                                                                              onIcon: FaIcon(
+                                                                                FontAwesomeIcons.leaf,
+                                                                                color: FlutterFlowTheme.of(context).primary,
+                                                                                size: 22.0,
+                                                                              ),
+                                                                              offIcon: FaIcon(
+                                                                                FontAwesomeIcons.leaf,
+                                                                                color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                size: 22.0,
+                                                                              ),
+                                                                            ),
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                                                                              child: Text(
+                                                                                valueOrDefault<String>(
+                                                                                  functions.likes(listViewUserPostsRecord).toString(),
+                                                                                  '0',
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                      fontFamily: 'Figtree',
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FontWeight.normal,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                      Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        children: [
+                                                                          Icon(
+                                                                            Icons.mode_comment_outlined,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                            size:
+                                                                                22.0,
+                                                                          ),
+                                                                          Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                4.0,
+                                                                                0.0,
+                                                                                0.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                Text(
+                                                                              listViewUserPostsRecord.numComments.toString(),
+                                                                              style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                    fontFamily: 'Figtree',
+                                                                                    color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FontWeight.normal,
+                                                                                  ),
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           2.0,
                                                                           8.0,
                                                                           0.0),
-                                                                  child: Text(
-                                                                    dateTimeFormat(
-                                                                      'relative',
-                                                                      listViewUserPostsRecord
-                                                                          .timePosted!,
-                                                                      locale: FFLocalizations.of(
-                                                                              context)
-                                                                          .languageCode,
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Figtree',
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.normal,
+                                                                      child:
+                                                                          Text(
+                                                                        dateTimeFormat(
+                                                                          'relative',
+                                                                          listViewUserPostsRecord
+                                                                              .timePosted!,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
                                                                         ),
-                                                                  ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Figtree',
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
                                                                 ),
                                                               ],
                                                             ),
                                                           ],
                                                         ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ),
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              );
+                                            },
                                           );
                                         },
-                                      );
-                                    },
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ],
                           ),

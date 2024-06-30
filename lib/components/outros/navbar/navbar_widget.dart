@@ -62,6 +62,9 @@ class _NavbarWidgetState extends State<NavbarWidget> {
         child: Container(
           width: MediaQuery.sizeOf(context).width * 1.0,
           height: 66.0,
+          constraints: BoxConstraints(
+            maxWidth: 800.0,
+          ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).navbar,
             boxShadow: [

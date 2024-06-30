@@ -46,6 +46,21 @@ class QuizSetRecord extends FirestoreRecord {
   int get recompensa => _recompensa ?? 0;
   bool hasRecompensa() => _recompensa != null;
 
+  // "especial" field.
+  bool? _especial;
+  bool get especial => _especial ?? false;
+  bool hasEspecial() => _especial != null;
+
+  // "dataFinalEspecial" field.
+  DateTime? _dataFinalEspecial;
+  DateTime? get dataFinalEspecial => _dataFinalEspecial;
+  bool hasDataFinalEspecial() => _dataFinalEspecial != null;
+
+  // "liberado" field.
+  bool? _liberado;
+  bool get liberado => _liberado ?? false;
+  bool hasLiberado() => _liberado != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _duracao = castToType<int>(snapshotData['duracao']);
@@ -53,6 +68,9 @@ class QuizSetRecord extends FirestoreRecord {
     _desc = snapshotData['desc'] as String?;
     _imagem = snapshotData['imagem'] as String?;
     _recompensa = castToType<int>(snapshotData['recompensa']);
+    _especial = snapshotData['especial'] as bool?;
+    _dataFinalEspecial = snapshotData['dataFinalEspecial'] as DateTime?;
+    _liberado = snapshotData['liberado'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -96,6 +114,9 @@ Map<String, dynamic> createQuizSetRecordData({
   String? desc,
   String? imagem,
   int? recompensa,
+  bool? especial,
+  DateTime? dataFinalEspecial,
+  bool? liberado,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -105,6 +126,9 @@ Map<String, dynamic> createQuizSetRecordData({
       'desc': desc,
       'imagem': imagem,
       'recompensa': recompensa,
+      'especial': especial,
+      'dataFinalEspecial': dataFinalEspecial,
+      'liberado': liberado,
     }.withoutNulls,
   );
 
@@ -121,7 +145,10 @@ class QuizSetRecordDocumentEquality implements Equality<QuizSetRecord> {
         e1?.totalQuestoes == e2?.totalQuestoes &&
         e1?.desc == e2?.desc &&
         e1?.imagem == e2?.imagem &&
-        e1?.recompensa == e2?.recompensa;
+        e1?.recompensa == e2?.recompensa &&
+        e1?.especial == e2?.especial &&
+        e1?.dataFinalEspecial == e2?.dataFinalEspecial &&
+        e1?.liberado == e2?.liberado;
   }
 
   @override
@@ -131,7 +158,10 @@ class QuizSetRecordDocumentEquality implements Equality<QuizSetRecord> {
         e?.totalQuestoes,
         e?.desc,
         e?.imagem,
-        e?.recompensa
+        e?.recompensa,
+        e?.especial,
+        e?.dataFinalEspecial,
+        e?.liberado
       ]);
 
   @override
