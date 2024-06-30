@@ -57,6 +57,9 @@ class _MedalhasWidgetState extends State<MedalhasWidget> {
               Container(
                 width: double.infinity,
                 height: 84.0,
+                constraints: BoxConstraints(
+                  maxWidth: 800.0,
+                ),
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).appbar,
                 ),

@@ -30,3 +30,5 @@ export '/pages/quiz/quiz_finish/quiz_finish_widget.dart' show QuizFinishWidget;
 export '/pages/medals/medalhas/medalhas_widget.dart' show MedalhasWidget;
 export '/pages/medals/create_medal/create_medal_widget.dart'
     show CreateMedalWidget;
+export '/pages/authentication/usuario_login/usuario_login_widget.dart'
+    show UsuarioLoginWidget;

@@ -28,3 +28,10 @@ DateTime addData(DateTime data) {
   DateTime novaData = data.add(Duration(minutes: 1));
   return novaData;
 }
+
+String? replaceTheSpace(String? mensagem) {
+  if (mensagem == null) {
+    return '';
+  }
+  return mensagem.replaceAll(' ', '');
+}

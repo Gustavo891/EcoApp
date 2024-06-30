@@ -246,6 +246,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'create_medal',
           path: '/createMedal',
           builder: (context, params) => CreateMedalWidget(),
+        ),
+        FFRoute(
+          name: 'usuarioLogin',
+          path: '/usuarioLogin',
+          builder: (context, params) => UsuarioLoginWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

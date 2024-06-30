@@ -140,7 +140,7 @@ class _ConfiguracoesWidgetState extends State<ConfiguracoesWidget>
                 child: Container(
                   width: double.infinity,
                   constraints: BoxConstraints(
-                    maxWidth: 870.0,
+                    maxWidth: 800.0,
                   ),
                   decoration: BoxDecoration(),
                   child: Column(
@@ -156,6 +156,9 @@ class _ConfiguracoesWidgetState extends State<ConfiguracoesWidget>
                               0.0, 16.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
+                            constraints: BoxConstraints(
+                              maxWidth: 800.0,
+                            ),
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .primaryBackground,
@@ -182,7 +185,7 @@ class _ConfiguracoesWidgetState extends State<ConfiguracoesWidget>
                                       size: 25.0,
                                     ),
                                     onPressed: () async {
-                                      context.pop();
+                                      context.pushNamed('perfil');
                                     },
                                   ),
                                   Padding(
@@ -227,6 +230,9 @@ class _ConfiguracoesWidgetState extends State<ConfiguracoesWidget>
                         ),
                       Container(
                         width: MediaQuery.sizeOf(context).width * 1.0,
+                        constraints: BoxConstraints(
+                          maxWidth: 800.0,
+                        ),
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
@@ -284,6 +290,9 @@ class _ConfiguracoesWidgetState extends State<ConfiguracoesWidget>
                             child: Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
                               height: 50.0,
+                              constraints: BoxConstraints(
+                                maxWidth: 800.0,
+                              ),
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).card,
                                 borderRadius: BorderRadius.circular(10.0),
@@ -339,6 +348,9 @@ class _ConfiguracoesWidgetState extends State<ConfiguracoesWidget>
                             child: Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
                               height: 50.0,
+                              constraints: BoxConstraints(
+                                maxWidth: 800.0,
+                              ),
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).card,
                                 borderRadius: BorderRadius.circular(10.0),
@@ -365,6 +377,65 @@ class _ConfiguracoesWidgetState extends State<ConfiguracoesWidget>
                                             24.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           'Segurança/Senha',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Figtree',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(0.9, 0.0),
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Color(0xFF95A1AC),
+                                          size: 18.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 20.0, 0.0),
+                            child: Container(
+                              width: MediaQuery.sizeOf(context).width * 1.0,
+                              height: 50.0,
+                              constraints: BoxConstraints(
+                                maxWidth: 800.0,
+                              ),
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context).card,
+                                borderRadius: BorderRadius.circular(10.0),
+                                shape: BoxShape.rectangle,
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 16.0, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    await launchURL(
+                                        'https://github.com/Gustavo891/EcoApp/releases/download/Beta/EcoSocial.apk');
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Baixar o aplicativo',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
